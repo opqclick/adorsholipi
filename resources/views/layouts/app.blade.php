@@ -18,6 +18,7 @@
                 <a href="{{ route('articles.index') }}">Articles</a>
 
                 @auth
+                    <a href="{{ route('admin.articles.index') }}" class="px-3 py-2">Admin Articles</a>
                     <a href="{{ route('articles.create') }}">New Article</a>
                     <form method="POST" action="{{ route('logout') }}" class="inline-form">
                         @csrf
