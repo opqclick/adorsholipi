@@ -16,6 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed the default admin user
+        User::updateOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'name' => 'Admin User',
+                'email_verified_at' => now(),
+                'password' => bcrypt('123456'),
+                'remember_token' => Str::random(10),
+            ]
+        );
+
         // ensure a deterministic test user exists (prevents duplicate-key errors)
         User::updateOrCreate(
             ['email' => 'test@example.com'],
