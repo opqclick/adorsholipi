@@ -1,0 +1,67 @@
+/* minimal styling for Blade UI (no Tailwind/Vite) */
+
+:root{
+  --container-width: 980px;
+  --accent: #2563eb;
+  --muted: #6b7280;
+}
+
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f5f7fb;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.nav{
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand{
+  font-weight:700;
+  color: var(--accent);
+  text-decoration:none;
+}
+.nav-links a,
+.link-button{
+  margin-left: 0.75rem;
+  color: #374151;
+  text-decoration: none;
+}
+.inline-form{
+  display:inline;
+}
+.main{
+  padding-top: 1.5rem;
+}
+.flash-success{
+  background: #ecfccb;
+  border: 1px solid #bbf7d0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  color: #166534;
+}
+
+/* article card */
+.card{
+  background:#fff;
+  border:1px solid #e6e9ef;
+  padding:1rem;
+  border-radius:6px;
+  margin-bottom:1rem;
+}
+.card h2{ margin:0 0 .5rem 0; }
+.card p{ color: var(--muted); margin:0; }
