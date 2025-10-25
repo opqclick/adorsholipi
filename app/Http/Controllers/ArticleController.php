@@ -10,9 +10,38 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Article::published();
+        
+        // Get available years and months for filter
+        $years = Article::published()
+            ->selectRaw('YEAR(published_at) as year')
+            ->distinct()
+            ->orderByDesc('year')
+            ->pluck('year');
+
+        $months = collect(range(1, 12))->mapWithKeys(function($month) {
+            return [$month => date('F', mktime(0, 0, 0, $month, 1))];
+        });
+
+        // Apply filters
+        if ($request->year) {
+            $query->whereYear('published_at', $request->year);
+        }
+        
+        if ($request->month) {
+            $query->whereMonth('published_at', $request->month);
+        }
+
+        $articles = $query->orderByDesc('published_at')
+            ->get()
+            ->groupBy(function($article) {
+                return $article->published_at->format('Y');
+            })
+            ->sortKeysDesc();
+
+        return view('articles.index', compact('articles', 'years', 'months'));
     }
 
     /**
@@ -36,7 +65,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('articles.show', compact('article'));
     }
 
     /**

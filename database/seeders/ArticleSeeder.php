@@ -13,33 +13,38 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        $samples = [
+        $articles = [
             [
-                'title' => 'Getting Started with Adorsholipi',
-                'body' => "Welcome to Adorsholipi — a simple demo app.\n\nThis article walks you through the basics: creating articles, editing them, and browsing the list.",
-                'published_at' => now()->subDays(10),
+                'title' => 'Latest Development Updates',
+                'body' => 'Recent updates include new features and improvements...',
+                'published_at' => now(),
             ],
             [
-                'title' => 'How to Use Blade Templates',
-                'body' => "Blade is Laravel's templating engine. Use @extends and @section to compose layouts and keep views DRY.",
-                'published_at' => now()->subDays(7),
+                'title' => 'Year in Review 2024',
+                'body' => 'Looking back at our achievements this year...',
+                'published_at' => now()->startOfYear(),
             ],
             [
-                'title' => 'Deploying Locally with Valet',
-                'body' => "Laravel Valet is ideal for macOS local development. Park your project and access it at the configured .test domain.",
-                'published_at' => now()->subDays(3),
+                'title' => 'Major Release Announcement',
+                'body' => 'Announcing our biggest update yet...',
+                'published_at' => now()->subYear()->setMonth(6),
             ],
             [
-                'title' => 'Writing Clean Controllers',
-                'body' => "Keep controllers thin: validate requests, delegate business logic to services or models, and return responses or views.",
-                'published_at' => now()->subDay(),
+                'title' => 'Getting Started Guide',
+                'body' => 'Learn how to get started with our platform...',
+                'published_at' => now()->subYear()->startOfYear(),
+            ],
+            [
+                'title' => 'Original Launch Post',
+                'body' => 'Introducing our new platform to the world...',
+                'published_at' => now()->subYears(2)->setMonth(3),
             ],
         ];
 
-        foreach ($samples as $item) {
+        foreach ($articles as $article) {
             Article::updateOrCreate(
-                ['slug' => Str::slug($item['title'])],
-                array_merge($item, ['slug' => Str::slug($item['title'])])
+                ['slug' => Str::slug($article['title'])],
+                array_merge($article, ['slug' => Str::slug($article['title'])])
             );
         }
     }

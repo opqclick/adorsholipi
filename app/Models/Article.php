@@ -19,4 +19,11 @@ class Article extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')
+                    ->where('published_at', '<=', now())
+                    ->latest('published_at');
+    }
 }
