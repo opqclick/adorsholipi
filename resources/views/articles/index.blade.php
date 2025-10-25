@@ -75,7 +75,7 @@
             </div>
         </div>
     @empty
-        <p>No articles found for the selected filters.</p>
+        <p>No articles found for the selected filters. Opu</p>
     @endforelse
 </div>
 @endsection
